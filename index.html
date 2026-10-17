@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HERO GYM | Workout System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header class="navbar">
+
+        <a href="#" class="logo">
+
+            <span class="logo-icon">⚡</span>
+
+            <span>
+                HERO <strong>GYM</strong>
+            </span>
+
+        </a>
+
+        <div class="navbar-text">
+            WORKOUT PLAN SYSTEM
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+
+                <span class="status-dot"></span>
+
+                PERSONAL WORKOUT SYSTEM
+
+            </div>
+
+
+            <h1>
+
+                TRAIN HARD.
+
+                <span>BE A HERO.</span>
+
+            </h1>
+
+
+            <p>
+
+                خطتك، هدفك، وتطورك.
+
+                اختاري جدولك وابدئي رحلتك نحو جسم أقوى
+                مع نظام التمرينات الخاص بـ HERO GYM.
+
+            </p>
+
+
+            <a href="#workout-setup" class="main-button">
+
+                ابدئي دلوقتي
+
+                <span>←</span>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Hero Decoration -->
+
+        <div class="hero-decoration">
+
+            <div class="hero-circle circle-one"></div>
+
+            <div class="hero-circle circle-two"></div>
+
+
+            <div class="hero-icon">
+                ⚡
+            </div>
+
+
+            <div class="floating-card floating-top">
+
+                <span>01</span>
+
+                <div>
+
+                    <strong>YOUR PLAN</strong>
+
+                    <small>Built for you</small>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card floating-bottom">
+
+                <span>02</span>
+
+                <div>
+
+                    <strong>YOUR PROGRESS</strong>
+
+                    <small>Every rep counts</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         WORKOUT SETUP
+    ========================== -->
+
+    <main class="main-container">
+
+
+        <section class="setup-card" id="workout-setup">
+
+
+            <div class="section-heading">
+
+                <span class="section-number">
+                    01 / GET STARTED
+                </span>
+
+
+                <h2>
+
+                    جهزي
+
+                    <strong>جدولك</strong>
+
+                </h2>
+
+
+                <p>
+
+                    دخلي بيانات المتدرب وحددي مدة التدريب
+                    وعدد أيام التمرين ومدة الاشتراك.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- CLIENT FORM -->
+
+            <form id="workoutForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- Client Name -->
+
+                    <div class="form-group">
+
+                        <label for="clientName">
+
+                            اسم المتدرب
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="clientName"
+                            name="clientName"
+                            placeholder="اكتبي اسم المتدرب"
+                            maxlength="60"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Training Period -->
+
+                    <div class="form-group">
+
+                        <label for="trainingPeriod">
+
+                            مدة التدريب
+
+                        </label>
+
+
+                        <select
+                            id="trainingPeriod"
+                            name="trainingPeriod"
+                            required
+                        >
+
+                            <option value="first3">
+
+                                أول 3 شهور
+
+                            </option>
+
+
+                            <option value="second3">
+
+                                تاني 3 شهور
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Training Days -->
+
+                    <div class="form-group">
+
+                        <label for="trainingDays">
+
+                            عدد أيام التمرين
+
+                        </label>
+
+
+                        <select
+                            id="trainingDays"
+                            name="trainingDays"
+                            required
+                        >
+
+                            <option value="2">
+
+                                يومين في الأسبوع
+
+                            </option>
+
+
+                            <option value="3" selected>
+
+                                3 أيام في الأسبوع
+
+                            </option>
+
+
+                            <option value="4">
+
+                                4 أيام في الأسبوع
+
+                            </option>
+
+
+                            <option value="5">
+
+                                5 أيام في الأسبوع
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Subscription -->
+
+                    <div class="form-group">
+
+                        <label for="subscription">
+
+                            مدة الاشتراك
+
+                        </label>
+
+
+                        <select
+                            id="subscription"
+                            name="subscription"
+                            required
+                        >
+
+                            <option value="1">
+
+                                شهر واحد
+
+                            </option>
+
+
+                            <option value="3">
+
+                                3 شهور
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Start Date -->
+
+                    <div class="form-group full-width">
+
+                        <label for="startDate">
+
+                            تاريخ بداية الاشتراك
+
+                        </label>
+
+
+                        <input
+                            type="date"
+                            id="startDate"
+                            name="startDate"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- WORKOUT SPLIT PREVIEW -->
+
+                <div class="split-preview-box">
+
+
+                    <div class="split-preview-heading">
+
+                        <div class="preview-icon">
+                            ⚡
+                        </div>
+
+
+                        <div>
+
+                            <h3>
+                                تقسيمة جدول التمرين
+                            </h3>
+
+
+                            <p id="splitDescription">
+
+                                اختاري عدد أيام التمرين لعرض التقسيمة.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div
+                        id="splitPreviewDays"
+                        class="split-preview-days"
+                    >
+
+                        <!-- Workout days will appear here using JavaScript -->
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="main-button submit-button"
+                >
+
+                    عرض جدول التمرين
+
+                    <span>←</span>
+
+                </button>
+
+
+                <p class="form-note">
+
+                    يتم اختيار الجدول بناءً على مدة التدريب
+                    وعدد أيام التمرين.
+
+                </p>
+
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =========================
+             GENERATED WORKOUT PLAN
+        ========================== -->
+
+        <section
+            id="workoutSection"
+            class="workout-section hidden"
+        >
+
+
+            <!-- Welcome -->
+
+            <div class="workout-welcome">
+
+
+                <div>
+
+                    <span class="section-number">
+
+                        02 / YOUR PERSONAL PLAN
+
+                    </span>
+
+
+                    <h2>
+
+                        يلا يا
+
+                        <strong id="welcomeName">
+
+                            HERO
+
+                        </strong>
+
+                    </h2>
+
+
+                    <p id="welcomeDescription">
+
+                        جدول التمرين الخاص بيك جاهز.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Workout Stats -->
+
+                <div class="workout-stat">
+
+
+                    <span
+                        class="stat-number"
+                        id="totalDays"
+                    >
+
+                        3
+
+                    </span>
+
+
+                    <span class="stat-label">
+
+                        TRAINING DAYS
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Subscription Status -->
+
+            <div class="subscription-status">
+
+
+                <div>
+
+                    <span class="status-label">
+
+                        مدة الاشتراك
+
+                    </span>
+
+
+                    <strong id="subscriptionLabel">
+
+                        شهر واحد
+
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span class="status-label">
+
+                        تاريخ الانتهاء
+
+                    </span>
+
+
+                    <strong id="expiryDate">
+
+                        --
+
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span class="status-label">
+
+                        الحالة
+
+                    </span>
+
+
+                    <strong
+                        id="subscriptionStatus"
+                        class="active-status"
+                    >
+
+                        نشط
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- Expired Message -->
+
+            <div
+                id="expiredMessage"
+                class="expired-message hidden"
+            >
+
+                انتهت مدة الاشتراك.
+
+                برجاء التواصل مع الكابتن لتجديد الاشتراك.
+
+            </div>
+
+
+
+            <!-- Choose Workout Day -->
+
+            <div class="workout-days-container">
+
+
+                <div class="section-heading">
+
+                    <h3>
+
+                        اختاري يوم التمرين
+
+                    </h3>
+
+
+                    <p>
+
+                        اضغطي على اليوم لعرض التمرينات الخاصة بيه.
+
+                    </p>
+
+                </div>
+
+
+
+                <div
+                    id="workoutDays"
+                    class="workout-days"
+                >
+
+                    <!-- Workout day buttons will appear here -->
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 EXERCISES
+            ========================== -->
+
+            <section
+                id="exerciseSection"
+                class="exercise-section hidden"
+            >
+
+
+                <!-- Day Heading -->
+
+                <div class="day-heading">
+
+
+                    <div>
+
+                        <span
+                            id="dayNumber"
+                            class="section-number"
+                        >
+
+                            DAY 01
+
+                        </span>
+
+
+                        <h2 id="selectedDayTitle">
+
+                            PUSH DAY
+
+                        </h2>
+
+
+                        <p id="selectedDayDescription">
+
+                            تمرينات اليوم.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="exercise-count">
+
+
+                        <strong id="exerciseCount">
+
+                            0
+
+                        </strong>
+
+
+                        <span>
+
+                            EXERCISES
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Exercise Cards -->
+
+                <div
+                    id="exerciseGrid"
+                    class="exercise-grid"
+                >
+
+                    <!--
+                        JavaScript will create exercise cards here.
+
+                        Each card contains:
+                        1. Exercise image
+                        2. Exercise name
+                        3. Sets
+                        4. Repetitions
+                        5. Rest duration
+                    -->
+
+                </div>
+
+
+
+                <!-- Coach Note -->
+
+                <div class="workout-note">
+
+                    <span class="note-icon">
+                        💡
+                    </span>
+
+
+                    <p>
+
+                        اهتمي بالتكنيك الصحيح في كل تمرينة،
+                        واختاري الأوزان المناسبة لمستواكي.
+                        التكرارات ومدة الراحة يحددهم جدول الكابتن.
+
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+
+        <a href="#" class="logo">
+
+            <span class="logo-icon">
+                ⚡
+            </span>
+
+
+            <span>
+
+                HERO <strong>GYM</strong>
+
+            </span>
+
+        </a>
+
+
+
+        <p>
+
+            DISCIPLINE. STRENGTH. PROGRESS.
+
+        </p>
+
+
+
+        <span class="copyright">
+
+            © 2026 HERO GYM
+
+        </span>
+
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="go.js"></script>
+
+
+</body>
+
+</html>
+

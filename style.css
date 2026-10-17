@@ -1,0 +1,1121 @@
+/* =========================================
+   HERO GYM
+   WORKOUT PLAN SYSTEM
+========================================= */
+
+
+/* =========================================
+   1. GLOBAL SETTINGS
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #090909;
+    --card-color: #121212;
+    --card-light: #191919;
+    --primary-red: #ff294d;
+    --red-dark: #b90e2c;
+    --white: #ffffff;
+    --text-color: #d0d0d0;
+    --muted-color: #888888;
+    --border-color: rgba(255, 255, 255, 0.09);
+    --transition: 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Cairo", sans-serif;
+    background: var(--bg-color);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+    background: var(--primary-red);
+    color: white;
+}
+
+
+/* =========================================
+   2. BACKGROUND EFFECTS
+========================================= */
+
+.background-glow {
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.13;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glow-one {
+    background: var(--primary-red);
+    top: 50px;
+    left: -200px;
+}
+
+.glow-two {
+    background: #85001c;
+    right: -200px;
+    top: 650px;
+}
+
+
+/* =========================================
+   3. NAVBAR
+========================================= */
+
+.navbar {
+    height: 82px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(9, 9, 9, 0.88);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    direction: ltr;
+}
+
+.logo strong {
+    color: var(--primary-red);
+}
+
+.logo-icon {
+    color: var(--primary-red);
+    font-size: 31px;
+}
+
+.navbar-text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted-color);
+    direction: ltr;
+}
+
+
+/* =========================================
+   4. HERO SECTION
+========================================= */
+
+.hero {
+    width: min(1120px, 88%);
+    min-height: 430px;
+    margin: auto;
+    padding: 45px 0 55px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 30px;
+    direction: ltr;
+}
+
+.hero-content {
+    direction: ltr;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #d0d0d0;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-red);
+    box-shadow: 0 0 15px var(--primary-red);
+}
+
+.hero h1 {
+    margin: 23px 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--primary-red);
+    margin-top: 5px;
+}
+
+.hero-content > p {
+    max-width: 440px;
+    margin-bottom: 25px;
+    color: #b7b7b7;
+    font-size: 14px;
+    line-height: 2;
+    direction: rtl;
+    text-align: left;
+}
+
+
+/* =========================================
+   5. BUTTONS
+========================================= */
+
+.main-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 14px 23px;
+    border: 1px solid var(--primary-red);
+    border-radius: 9px;
+    background: var(--primary-red);
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 8px 25px rgba(255, 41, 77, 0.12);
+}
+
+.main-button span {
+    font-size: 20px;
+    transition: transform var(--transition);
+}
+
+.main-button:hover {
+    background: transparent;
+    color: var(--primary-red);
+    transform: translateY(-2px);
+}
+
+.main-button:hover span {
+    transform: translateX(-4px);
+}
+
+.submit-button {
+    width: 100%;
+    margin-top: 25px;
+}
+
+
+/* =========================================
+   6. HERO DECORATION
+========================================= */
+
+.hero-decoration {
+    position: relative;
+    height: 310px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-circle {
+    position: absolute;
+    border: 1px solid rgba(255, 41, 77, 0.28);
+    border-radius: 50%;
+    transform: rotate(-22deg);
+}
+
+.circle-one {
+    width: 265px;
+    height: 265px;
+}
+
+.circle-two {
+    width: 205px;
+    height: 205px;
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-icon {
+    color: var(--primary-red);
+    font-size: 125px;
+    font-weight: 900;
+    text-shadow: 0 0 65px rgba(255, 41, 77, 0.3);
+    transform: skew(-8deg);
+}
+
+.floating-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: #171717;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+    direction: ltr;
+    font-family: "Montserrat", sans-serif;
+}
+
+.floating-card > span {
+    color: var(--primary-red);
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.floating-card strong,
+.floating-card small {
+    display: block;
+}
+
+.floating-card strong {
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.floating-card small {
+    margin-top: 4px;
+    color: var(--muted-color);
+    font-size: 10px;
+}
+
+.floating-top {
+    top: 30px;
+    right: 0;
+}
+
+.floating-bottom {
+    bottom: 25px;
+    left: 0;
+}
+
+
+/* =========================================
+   7. MAIN CONTAINER
+========================================= */
+
+.main-container {
+    width: min(1120px, 88%);
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   8. SETUP CARD
+========================================= */
+
+.setup-card {
+    padding: clamp(22px, 4vw, 42px);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: linear-gradient(145deg, #151515, #0e0e0e);
+    box-shadow: 0 22px 65px rgba(0, 0, 0, 0.25);
+}
+
+.section-heading {
+    margin-bottom: 27px;
+}
+
+.section-number {
+    display: inline-block;
+    color: var(--primary-red);
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    direction: ltr;
+}
+
+.section-heading h2,
+.workout-welcome h2 {
+    margin: 9px 0;
+    font-size: clamp(25px, 4vw, 36px);
+    font-weight: 900;
+}
+
+.section-heading h2 strong,
+.workout-welcome h2 strong {
+    color: var(--primary-red);
+}
+
+.section-heading > p,
+.workout-welcome > div > p {
+    color: var(--muted-color);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   9. FORM
+========================================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+
+.form-group label {
+    color: #dedede;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-height: 49px;
+    padding: 0 14px;
+    border: 1px solid #303030;
+    border-radius: 9px;
+    outline: none;
+    background: #0b0b0b;
+    color: white;
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(255, 41, 77, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #666;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #111;
+    color: white;
+}
+
+.form-group input[type="date"] {
+    color-scheme: dark;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================
+   10. WORKOUT SPLIT PREVIEW
+========================================= */
+
+.split-preview-box {
+    margin-top: 26px;
+    padding: 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: #0b0b0b;
+}
+
+.split-preview-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.preview-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(255, 41, 77, 0.12);
+    color: var(--primary-red);
+    font-size: 24px;
+}
+
+.split-preview-heading h3 {
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.split-preview-heading p {
+    margin-top: 3px;
+    color: var(--muted-color);
+    font-size: 11px;
+}
+
+.split-preview-days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.split-day-item {
+    padding: 8px 12px;
+    border: 1px solid #303030;
+    border-radius: 7px;
+    background: #191919;
+    color: #e8e8e8;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    direction: ltr;
+}
+
+.form-note {
+    margin-top: 12px;
+    color: #777;
+    font-size: 11px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   11. WORKOUT SECTION
+========================================= */
+
+.workout-section {
+    margin-top: 42px;
+    animation: fade-up 0.5s ease both;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.workout-welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.workout-welcome h2 {
+    margin: 8px 0;
+}
+
+.workout-stat {
+    min-width: 125px;
+    padding: 17px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: #171717;
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    color: var(--primary-red);
+    font-family: "Montserrat", sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.stat-label {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted-color);
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   12. SUBSCRIPTION STATUS
+========================================= */
+
+.subscription-status {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    background: #121212;
+}
+
+.subscription-status > div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.status-label {
+    color: var(--muted-color);
+    font-size: 11px;
+}
+
+.subscription-status strong {
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.active-status {
+    color: #56d68b;
+}
+
+.expired-status {
+    color: var(--primary-red);
+}
+
+.expired-message {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #873044;
+    border-radius: 10px;
+    background: #301017;
+    color: #ffb8c4;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   13. WORKOUT DAYS
+========================================= */
+
+.workout-days-container {
+    margin-bottom: 22px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: #121212;
+}
+
+.workout-days-container .section-heading {
+    margin-bottom: 20px;
+}
+
+.workout-days-container .section-heading h3 {
+    margin-bottom: 5px;
+    font-size: 21px;
+}
+
+.workout-days-container .section-heading > p {
+    font-size: 12px;
+}
+
+.workout-days {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.workout-day-button {
+    padding: 15px 8px;
+    border: 1px solid #2b2b2b;
+    border-radius: 10px;
+    background: #0b0b0b;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.workout-day-button:hover,
+.workout-day-button.active {
+    border-color: var(--primary-red);
+    background: rgba(255, 41, 77, 0.1);
+}
+
+.workout-day-button span {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--muted-color);
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    direction: ltr;
+}
+
+.workout-day-button strong {
+    display: block;
+    font-size: 12px;
+}
+
+.workout-day-button.active span,
+.workout-day-button.active strong {
+    color: var(--primary-red);
+}
+
+
+/* =========================================
+   14. EXERCISE SECTION
+========================================= */
+
+.exercise-section {
+    padding: clamp(18px, 3vw, 30px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background: #111;
+}
+
+.day-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 23px;
+}
+
+.day-heading h2 {
+    margin: 7px 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+.day-heading > div:first-child > p {
+    color: var(--muted-color);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.exercise-count {
+    min-width: 85px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: #1b1b1b;
+    text-align: center;
+}
+
+.exercise-count strong {
+    display: block;
+    color: var(--primary-red);
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.exercise-count span {
+    color: var(--muted-color);
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* =========================================
+   15. EXERCISE CARDS
+========================================= */
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.exercise-card {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #292929;
+    border-radius: 12px;
+    background: #181818;
+    transition: var(--transition);
+}
+
+.exercise-card:hover {
+    border-color: rgba(255, 41, 77, 0.5);
+    transform: translateY(-2px);
+}
+
+
+/* Exercise image placeholder */
+
+.exercise-image {
+    width: 118px;
+    height: 118px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    overflow: hidden;
+    border: 1px dashed #454545;
+    border-radius: 9px;
+    background: linear-gradient(145deg, #252525, #101010);
+    color: #777;
+    text-align: center;
+}
+
+.exercise-image .image-icon {
+    color: var(--primary-red);
+    font-size: 28px;
+}
+
+.exercise-image small {
+    font-size: 10px;
+}
+
+.exercise-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Exercise information */
+
+.exercise-info {
+    min-width: 0;
+}
+
+.exercise-number {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--primary-red);
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    direction: ltr;
+}
+
+.exercise-info h4 {
+    margin-bottom: 11px;
+    color: #f5f5f5;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.exercise-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.exercise-detail {
+    padding: 5px 7px;
+    border-radius: 6px;
+    background: #242424;
+    color: #ccc;
+    font-size: 10px;
+}
+
+.exercise-detail strong {
+    color: var(--primary-red);
+}
+
+
+/* =========================================
+   16. COACH NOTE
+========================================= */
+
+.workout-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-top: 22px;
+    padding: 14px;
+    border: 1px solid rgba(255, 41, 77, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 41, 77, 0.05);
+}
+
+.note-icon {
+    font-size: 19px;
+}
+
+.workout-note p {
+    color: #bdbdbd;
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+
+/* =========================================
+   17. FOOTER
+========================================= */
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 70px;
+    padding: 30px 7%;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer > p {
+    color: #777;
+    font-family: "Montserrat", sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    direction: ltr;
+}
+
+.copyright {
+    color: #777;
+    font-size: 10px;
+}
+
+
+/* =========================================
+   18. ANIMATIONS
+========================================= */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   19. TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 45px 0 30px;
+        gap: 5px;
+    }
+
+    .hero-decoration {
+        height: 230px;
+    }
+
+    .circle-one {
+        width: 210px;
+        height: 210px;
+    }
+
+    .circle-two {
+        width: 165px;
+        height: 165px;
+    }
+
+    .hero-icon {
+        font-size: 95px;
+    }
+
+    .floating-top {
+        right: 7%;
+    }
+
+    .floating-bottom {
+        left: 5%;
+    }
+
+    .workout-days {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .exercise-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   20. MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .navbar {
+        height: 70px;
+        padding: 0 5%;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .logo-icon {
+        font-size: 26px;
+    }
+
+    .navbar-text {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .hero,
+    .main-container {
+        width: 90%;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+        letter-spacing: -2px;
+    }
+
+    .hero-content > p {
+        font-size: 13px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .workout-welcome {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .workout-stat {
+        width: 100%;
+    }
+
+    .subscription-status {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .subscription-status > div {
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .subscription-status > div:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .workout-days-container {
+        padding: 17px;
+    }
+
+    .workout-days {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .exercise-card {
+        grid-template-columns: 94px minmax(0, 1fr);
+        gap: 10px;
+        padding: 9px;
+    }
+
+    .exercise-image {
+        width: 94px;
+        height: 104px;
+    }
+
+    .exercise-info h4 {
+        font-size: 12px;
+    }
+
+    .day-heading h2 {
+        font-size: 23px;
+    }
+
+    .footer {
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================
+   21. SMALL MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+    .navbar-text {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 37px;
+    }
+
+    .floating-card {
+        padding: 9px;
+    }
+
+    .exercise-card {
+        grid-template-columns: 80px minmax(0, 1fr);
+    }
+
+    .exercise-image {
+        width: 80px;
+        height: 90px;
+    }
+
+    .exercise-details {
+        gap: 4px;
+    }
+
+    .exercise-detail {
+        padding: 4px;
+        font-size: 9px;
+    }
+
+}
