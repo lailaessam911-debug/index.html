@@ -1018,16 +1018,57 @@ if (trainingDaysInput) {
 
 updateProgramPreview();
 
-// Open exercise image in a new tab when clicked
-document.addEventListener("click", function (event) {
+// Create image viewer
+const imageViewer = document.createElement("div");
+imageViewer.id = "imageViewer";
 
+imageViewer.innerHTML = `
+    <span id="closeImageViewer">&times;</span>
+    <img id="expandedExerciseImage" src="" alt="Exercise Image">
+`;
+
+document.body.appendChild(imageViewer);
+
+const expandedImage = document.getElementById("expandedExerciseImage");
+const closeButton = document.getElementById("closeImageViewer");
+
+// Open image
+document.addEventListener("click", function (event) {
     const image = event.target.closest(".exercise-image img");
 
     if (!image) return;
 
-    window.open(image.src, "_blank");
+    event.preventDefault();
 
+    expandedImage.src = image.src;
+    imageViewer.classList.add("active");
 });
+
+// Close by clicking the image again
+expandedImage.addEventListener("click", function () {
+    imageViewer.classList.remove("active");
+});
+
+// Close by clicking outside the image
+imageViewer.addEventListener("click", function (event) {
+    if (event.target === imageViewer) {
+        imageViewer.classList.remove("active");
+    }
+});
+
+// Close button
+closeButton.addEventListener("click", function () {
+    imageViewer.classList.remove("active");
+});
+
+// Close with Escape key
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        imageViewer.classList.remove("active");
+    }
+});
+
+
 /* =========================================
    RESTORE SAVED CLIENT
 ========================================= */
