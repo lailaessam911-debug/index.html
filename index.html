@@ -579,29 +579,35 @@
 
 
 
-            <!-- Warm-up video: put your video at videos/warmup.mp4 -->
-            <section id="warmupSection" class="media-guide-card hidden">
-                <div class="media-guide-heading">
-                    <span class="media-guide-icon">🔥</span>
-                    <div>
-                        <span class="section-number">BEFORE WORKOUT</span>
-                        <h3>فيديو الإحماء</h3>
-                        <p>ابدئي بالإحماء قبل أول تمرينة.</p>
-                    </div>
-                </div>
-                <video controls width="100%">
-                  <source src="videos/warmup.mp4" type="video/mp4">
-                   متصفحك لا يدعم تشغيل الفيديو.
-                </video>
-                <small class="media-file-hint"></small>
-            </section>
+<!-- Warm-up Video -->
+<section id="warmupSection" class="media-guide-card hidden">
 
-            <!-- Expired Message -->
-            <div id="expiredMessage" class="expired-message hidden" role="status">
-                <strong>انتهت مدة الاشتراك.</strong>
-                <p>علشان تكملي، سجّلي بياناتك من الأول وابدئي اشتراك جديد.</p>
-                <button type="button" id="renewRegistrationButton" class="main-button renew-button">تسجيل من جديد</button>
-            </div>
+    <div class="media-guide-heading">
+        <span class="media-guide-icon">🔥</span>
+
+        <div>
+            <span class="section-number">BEFORE WORKOUT</span>
+            <h3>فيديو الإحماء</h3>
+            <p>ابدئي بالإحماء قبل أول تمرينة.</p>
+        </div>
+    </div>
+
+    <video
+        id="warmupVideo"
+        controls
+        playsinline
+        preload="metadata"
+        width="100%"
+        style="display: block; max-width: 100%;"
+    >
+        <source src="videos/warmup.mp4" type="video/mp4">
+        المتصفح لا يدعم تشغيل الفيديو.
+    </video>
+
+    <small id="warmupError" class="media-file-hint" role="status"></small>
+
+</section>
+
 
 
 
@@ -754,19 +760,33 @@
 
             </section>
 
-            <!-- Stretching image: put your image at images/stretching.jpg -->
-            <section id="stretchingSection" class="media-guide-card stretching-card hidden">
-                <div class="media-guide-heading">
-                    <span class="media-guide-icon">🧘‍♀️</span>
-                    <div>
-                        <span class="section-number">AFTER WORKOUT</span>
-                        <h3>استرتشات بعد التمرين</h3>
-                        <p>اعملي الاسترتشات بهدوء بعد ما تخلصي تمرينك.</p>
-                    </div>
-                </div>
-                <img id="stretchingImage" src="images/stretching.jpg" alt="صورة استرتشات بعد التمرين" loading="lazy">
-                <small class="media-file-hint"> </small>
-            </section>
+            ```html
+
+<section id="stretchingSection" class="media-guide-card stretching-card hidden">
+
+    <div class="media-guide-heading">
+        <span class="media-guide-icon">🧘‍♀️</span>
+
+        <div>
+            <span class="section-number">AFTER WORKOUT</span>
+            <h3>استرتشات بعد التمرين</h3>
+            <p>اعملي الاسترتشات بهدوء بعد ما تخلصي تمرينك.</p>
+        </div>
+    </div>
+
+    <img
+        id="stretchingImage"
+        src="images/stretching.jpg"
+        alt="صورة استرتشات بعد التمرين"
+        loading="lazy"
+        style="max-width: 100%; height: auto;"
+    >
+
+    <small id="stretchingError" class="media-file-hint" role="status"></small>
+
+</section>
+
+
 
         </section>
 
