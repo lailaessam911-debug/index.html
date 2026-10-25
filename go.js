@@ -1,21 +1,3 @@
-
-/* =====================================================
-   HERO GYM
-   CLIENT WORKOUT SYSTEM
-
-   Training periods:
-   first3  = أول 3 شهور
-   second3 = تاني 3 شهور
-
-   Training days:
-   2, 3, 4, 5
-
-   Subscription:
-   1 = شهر
-   3 = 3 شهور
-===================================================== */
-
-
 /* =====================================================
    1. GET HTML ELEMENTS
 ===================================================== */
@@ -40,6 +22,9 @@ const subscriptionLabel = document.getElementById("subscriptionLabel");
 const expiryDate = document.getElementById("expiryDate");
 const subscriptionStatus = document.getElementById("subscriptionStatus");
 const expiredMessage = document.getElementById("expiredMessage");
+const renewRegistrationButton = document.getElementById("renewRegistrationButton");
+const warmupSection = document.getElementById("warmupSection");
+const stretchingSection = document.getElementById("stretchingSection");
 
 const workoutDays = document.getElementById("workoutDays");
 const exerciseSection = document.getElementById("exerciseSection");
@@ -272,7 +257,7 @@ const workoutPrograms = {
                     exercise("Flat Dumbbell Press","images/photo_2026-10-11_19-22-31.jpg"),
                     exercise("High Chest Press Machine","images/photo_2026-10-11_19-25-44.jpg"),
                     exercise("Cable Chest Fly","images/photo_2026-10-11_19-22-03.jpg"),
-                    exercise("Chest Press","images/photo_2026-10-11_19-22-31.jpg"),
+                    exercise("Chest Press","images/photo_2026-10-17_23-36-33.jpg"),
                     exercise("Over Bench","images/photo_2026-10-11_18-52-08.jpg"),
                     exercise("Biceps Curl","images/photo_2026-10-11_19-17-22.jpg"),
                     exercise("Hammer Curl","images/photo_2026-09-30_18-30-55 (3).jpg")
@@ -328,7 +313,7 @@ const workoutPrograms = {
                 name: "LEG",
                 title: "Leg Day",
                 exercises: [
-                    exercise("Leg Extension","images/photo_2026-09-30_18-30-55.jpg"),
+                    exercise("Leg Extension","images/photo_2026-10-17_23-36-33.jpg"),
                     exercise("Standing Single-Leg Curl","images/photo_2026-09-30_18-22-16 (2).jpg"),
                     exercise("Dumbbell Lunges","images/photo_2026-10-16_18-58-14.jpg"),
                     exercise("Leg Press","images/photo_2026-09-30_18-22-16 (3).jpg"),
@@ -697,12 +682,16 @@ function formatDate(date) {
 
 
 function getTodayAtMidnight() {
-
     const today = new Date();
-
     today.setHours(0, 0, 0, 0);
-
     return today;
+}
+
+function getLocalDateString(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
 }
 
 
@@ -897,55 +886,39 @@ function renderExercises(day, index) {
    SHOW WORKOUT + SAVE CLIENT
 ========================================= */
 
-function showWorkout(program, clientName, period, days) {
-
-    // Save client information in the browser
+function showWorkout(program, clientName, period, days, months = 1, startDateString = getLocalDateString()) {
     const clientData = {
-        clientName: clientName,
-        period: period,
-        days: days
+        clientName,
+        period,
+        days: Number(days),
+        months: Number(months) || 1,
+        startDate: startDateString || getLocalDateString()
     };
 
-    localStorage.setItem(
-        "heroGymClient",
-        JSON.stringify(clientData)
-    );
+    localStorage.setItem("heroGymClient", JSON.stringify(clientData));
 
-    // Show client information
     welcomeName.textContent = clientName;
-
-    welcomeDescription.textContent =
-        getProgramDescription(period, days);
-
+    welcomeDescription.textContent = getProgramDescription(period, days);
     totalDays.textContent = days;
 
+    const subscription = updateSubscriptionStatus(clientData.startDate, clientData.months);
     workoutSection.classList.remove("hidden");
+    if (clientForm) clientForm.classList.add("hidden");
 
-    // Hide expired subscription message
-    if (expiredMessage) {
-        expiredMessage.classList.add("hidden");
+    if (!subscription.active) {
+        if (expiredMessage) expiredMessage.classList.remove("hidden");
+        document.querySelectorAll(".workout-days-container, .exercise-section").forEach(section => section.classList.add("hidden"));
+        if (warmupSection) warmupSection.classList.add("hidden");
+        if (stretchingSection) stretchingSection.classList.add("hidden");
+    } else {
+        if (expiredMessage) expiredMessage.classList.add("hidden");
+        document.querySelectorAll(".workout-days-container, .exercise-section").forEach(section => section.classList.remove("hidden"));
+        if (warmupSection) warmupSection.classList.remove("hidden");
+        if (stretchingSection) stretchingSection.classList.remove("hidden");
+        renderWorkoutDays(program);
     }
 
-    // Show workout sections
-    document.querySelectorAll(
-        ".workout-days-container, .exercise-section"
-    ).forEach(section => {
-        section.classList.remove("hidden");
-    });
-
-    // Hide registration form after registration
-    if (clientForm) {
-        clientForm.classList.add("hidden");
-    }
-
-    // Display the selected workout
-    renderWorkoutDays(program);
-
-    // Scroll to workout
-    workoutSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    workoutSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 /* =====================================================
@@ -965,8 +938,10 @@ if (clientForm) {
         const clientName = clientNameInput.value.trim();
         const period = trainingPeriodInput.value;
         const days = Number(trainingDaysInput.value);
+        const months = Number(subscriptionInput?.value || 1);
+        const startDate = startDateInput?.value || getLocalDateString();
 
-        if (!clientName || !period || !days) {
+        if (!clientName || !period || !days || !startDate) {
             alert("من فضلك املي كل البيانات المطلوبة.");
             return;
         }
@@ -978,12 +953,13 @@ if (clientForm) {
             return;
         }
 
-        showWorkout(
-            program,
-            clientName,
-            period,
-            days
-        );
+        const start = new Date(`${startDate}T00:00:00`);
+        if (Number.isNaN(start.getTime()) || start > getTodayAtMidnight()) {
+            alert("اختاري تاريخ بداية صحيح، النهارده أو تاريخ سابق.");
+            return;
+        }
+
+        showWorkout(program, clientName, period, days, months, startDate);
 
     });
 
@@ -1069,6 +1045,30 @@ document.addEventListener("keydown", function (event) {
 });
 
 
+// Default the registration start date to today.
+if (startDateInput && !startDateInput.value) {
+    startDateInput.value = getLocalDateString();
+    startDateInput.max = getLocalDateString();
+}
+
+// When the subscription expires, let the client register from scratch.
+if (renewRegistrationButton) {
+    renewRegistrationButton.addEventListener("click", function () {
+        localStorage.removeItem("heroGymClient");
+        if (clientForm) {
+            clientForm.reset();
+            if (startDateInput) {
+                startDateInput.value = getLocalDateString();
+                startDateInput.max = getLocalDateString();
+            }
+            clientForm.classList.remove("hidden");
+        }
+        if (workoutSection) workoutSection.classList.add("hidden");
+        if (expiredMessage) expiredMessage.classList.add("hidden");
+        document.getElementById("workout-setup")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+}
+
 /* =========================================
    RESTORE SAVED CLIENT
 ========================================= */
@@ -1091,11 +1091,15 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        const savedStartDate = client.startDate || getLocalDateString();
+        const savedMonths = Number(client.months || 1);
         showWorkout(
             program,
             client.clientName,
             client.period,
-            Number(client.days)
+            Number(client.days),
+            savedMonths,
+            savedStartDate
         );
 
     } catch (error) {
@@ -1105,3 +1109,48 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+function registerAgain() {
+    // مسح بيانات العميل المحفوظة
+    localStorage.removeItem("heroGymClient");
+
+    // إعادة ضبط بيانات التسجيل
+    if (clientForm) {
+        clientForm.reset();
+
+        // ضبط تاريخ البداية على تاريخ اليوم
+        if (startDateInput) {
+            startDateInput.value = getLocalDateString();
+            startDateInput.max = getLocalDateString();
+        }
+
+        // إظهار فورم التسجيل
+        clientForm.classList.remove("hidden");
+    }
+
+    // إخفاء جدول التمرين
+    if (workoutSection) {
+        workoutSection.classList.add("hidden");
+    }
+
+    // إخفاء رسالة انتهاء الاشتراك
+    if (expiredMessage) {
+        expiredMessage.classList.add("hidden");
+    }
+
+    // إخفاء الإحماء والاسترتشات
+    if (warmupSection) {
+        warmupSection.classList.add("hidden");
+    }
+
+    if (stretchingSection) {
+        stretchingSection.classList.add("hidden");
+    }
+
+    // الرجوع لبداية فورم التسجيل
+    document.getElementById("workout-setup")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+

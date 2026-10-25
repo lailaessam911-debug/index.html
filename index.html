@@ -579,17 +579,28 @@
 
 
 
+            <!-- Warm-up video: put your video at videos/warmup.mp4 -->
+            <section id="warmupSection" class="media-guide-card hidden">
+                <div class="media-guide-heading">
+                    <span class="media-guide-icon">🔥</span>
+                    <div>
+                        <span class="section-number">BEFORE WORKOUT</span>
+                        <h3>فيديو الإحماء</h3>
+                        <p>ابدئي بالإحماء قبل أول تمرينة.</p>
+                    </div>
+                </div>
+                <video id="warmupVideo" controls playsinline preload="metadata">
+                    <source src="videos/warmup.mp4" type="video/mp4">
+                    المتصفح لا يدعم تشغيل الفيديو.
+                </video>
+                <small class="media-file-hint">حطي فيديو الإحماء داخل فولدر videos باسم warmup.mp4</small>
+            </section>
+
             <!-- Expired Message -->
-
-            <div
-                id="expiredMessage"
-                class="expired-message hidden"
-            >
-
-                انتهت مدة الاشتراك.
-
-                برجاء التواصل مع الكابتن لتجديد الاشتراك.
-
+            <div id="expiredMessage" class="expired-message hidden" role="status">
+                <strong>انتهت مدة الاشتراك.</strong>
+                <p>علشان تكملي، سجّلي بياناتك من الأول وابدئي اشتراك جديد.</p>
+                <button type="button" id="renewRegistrationButton" class="main-button renew-button">تسجيل من جديد</button>
             </div>
 
 
@@ -743,6 +754,19 @@
 
             </section>
 
+            <!-- Stretching image: put your image at images/stretching.jpg -->
+            <section id="stretchingSection" class="media-guide-card stretching-card hidden">
+                <div class="media-guide-heading">
+                    <span class="media-guide-icon">🧘‍♀️</span>
+                    <div>
+                        <span class="section-number">AFTER WORKOUT</span>
+                        <h3>استرتشات بعد التمرين</h3>
+                        <p>اعملي الاسترتشات بهدوء بعد ما تخلصي تمرينك.</p>
+                    </div>
+                </div>
+                <img id="stretchingImage" src="images/stretching.jpg" alt="صورة استرتشات بعد التمرين" loading="lazy">
+                <small class="media-file-hint">حطي صورة الاسترتشات داخل فولدر images باسم stretching.jpg</small>
+            </section>
 
         </section>
 
@@ -798,8 +822,18 @@
 
     <script src="go.js"></script>
 
+  
+<div class="register-again-container">
+    <button type="button" id="registerAgainBtn" onclick="registerAgain()">
+        🔄 تسجيل من جديد
+    </button>
+</div>
+
+
 
 </body>
 
 </html>
+
+
 
