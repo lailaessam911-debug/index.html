@@ -296,16 +296,19 @@ const workoutPrograms = {
             },
 
             {
-                name: "GLUTES",
-                title: "Glutes Day",
+                name: "ARMS",
+                title: "Arms Day",
                 exercises: [
-                    exercise("Barbell Sumo Deadlift","images/photo_2026-10-16_19-46-56.jpg"),
-                    exercise(" Lateral Lunge","images/photo_2026-10-11_19-11-57.jpg"),
-                    exercise("Hip Thrust","images/photo_2026-10-10_15-38-46.jpg"),
-                    exercise("Cable Kickback","images/photo_2026-09-30_18-22-18.jpg"),
-                    exercise("Single-Leg Bench Lunge","images/photo_2026-10-16_18-58-14.jpg"),
-                    exercise(" Hip Abduction","images/photo_2026-10-10_15-37-48.jpg"),
-                    exercise("Glutes on Lower Back Machine","images/photo_2026-09-30_18-30-55.jpg")
+                    exercise("Wide Zigzag Bar Biceps Curl","images/photo_2026-10-11_19-17-22.jpg"),
+                    exercise("Cable Hammer Curl","images/photo_2026-10-16_20-02-17.jpg"),
+                    exercise("Single Dumbbell Preacher Curl","images/photo_2026-09-30_18-30-55 (2).jpg"),
+                    exercise("Cable Biceps Curl","images/photo_2026-10-16_20-05-21.jpg"),
+                    exercise("Triceps Rope Pushdown","images/photo_2026-09-30_18-10-41 (2).jpg"),
+                    exercise("Triceps Kickback","images/photo_2026-10-16_20-05-22.jpg"),
+                    exercise("Lying Reverse-Grip Triceps Bar","images/photo_2026-10-16_20-12-33.jpg"),
+                    exercise("Wide Zigzag Cable Triceps","images/photo_2026-10-11_18-52-38.jpg"),
+                    exercise("Wrist Curl","images/photo_2026-10-10_16-26-06.jpg"),
+                    exercise("Forearm Curl","images/photo_2026-10-10_16-24-51.jpg")
                 ]
             },
 
@@ -313,7 +316,7 @@ const workoutPrograms = {
                 name: "LEG",
                 title: "Leg Day",
                 exercises: [
-                    exercise("Leg Extension","images/photo_2026-10-17_23-36-33.jpg"),
+                    exercise("Leg Extension","images/photo_2026-09-30_18-22-16.jpg"),
                     exercise("Standing Single-Leg Curl","images/photo_2026-09-30_18-22-16 (2).jpg"),
                     exercise("Dumbbell Lunges","images/photo_2026-10-16_18-58-14.jpg"),
                     exercise("Leg Press","images/photo_2026-09-30_18-22-16 (3).jpg"),
@@ -564,12 +567,12 @@ const workoutPrograms = {
 
             {
                 name: "GLUTES",
-                title: "Glutes Day",
+                title: "leg - Glutes Day",
                 exercises: [
                     exercise("Hip Thrust","images/photo_2026-10-10_15-38-46.jpg"),
                     exercise("Sit-Up","images/photo_2026-10-16_19-58-01.jpg"),
                     exercise("Romanian Deadlift - RDL","images/photo_2026-10-10_15-33-38.jpg"),
-                    exercise("Dumbbell Sumo Squat","images/photo_2026-09-30_18-22-17.jpg"),
+                    exercise("Leg Extension","images/photo_2026-09-30_18-22-16.jpg"),
                     exercise("Hip Abduction Machine","images/photo_2026-10-10_15-37-48.jpg"),
                     exercise("Bulgarian Split Squat","images/photo_2026-10-11_19-11-57.jpg"),
                     exercise(" Leg Curl","images/photo_2026-09-30_18-22-16 (2).jpg"),
@@ -1154,3 +1157,25 @@ function registerAgain() {
     });
 }
 
+
+// Check warm-up video
+const warmupVideo = document.getElementById("warmupVideo");
+const warmupError = document.getElementById("warmupError");
+
+if (warmupVideo && warmupError) {
+    warmupVideo.addEventListener("error", function () {
+        warmupError.textContent =
+            "تعذر تحميل الفيديو. تأكدي من رفع videos/warmup.mp4 على GitHub.";
+    });
+}
+
+// Check stretching image
+const stretchingImage = document.getElementById("stretchingImage");
+const stretchingError = document.getElementById("stretchingError");
+
+if (stretchingImage && stretchingError) {
+    stretchingImage.addEventListener("error", function () {
+        stretchingError.textContent =
+            "تعذر تحميل الصورة. تأكدي من وجود images/stretching.jpg على GitHub.";
+    });
+}
